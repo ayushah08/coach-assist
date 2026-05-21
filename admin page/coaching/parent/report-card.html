@@ -54,10 +54,12 @@
 
 <body>
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen overflow-x-hidden">
 
   <!-- Sidebar -->
-  <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col">
+ <aside
+  id="mobileMenu"
+  class="hidden fixed top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 flex-col shadow-2xl lg:flex lg:static">
 
     <!-- Logo -->
     <div class="flex items-center gap-4 mb-10">
@@ -118,20 +120,23 @@
   </aside>
 
   <!-- Main -->
-  <main class="flex-1 p-4 md:p-6 lg:p-10">
+  <main class="flex-1 w-full overflow-hidden p-4 md:p-6 lg:p-10">
 
-    <!-- Mobile Header -->
-    <div class="flex items-center justify-between mb-6 lg:hidden">
+  <!-- MOBILE HEADER -->
+<div class="flex items-center justify-between mb-6 lg:hidden">
 
-      <h1 class="text-2xl font-bold text-slate-900">
-        Parent Panel
-      </h1>
+  <h1 class="text-2xl font-bold text-slate-900">
+    Parent Panel
+  </h1>
 
-      <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
-        ☰
-      </button>
+  <button
+    id="menuBtn"
+    class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+  >
+    ☰
+  </button>
 
-    </div>
+</div>
 
     <!-- Top -->
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
@@ -142,7 +147,7 @@
           Academic Report
         </p>
 
-        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3">
+        <h1 class="text-3xl md:text-5xl break-words font-extrabold text-slate-900 mt-3">
           Student Report Card 📄
         </h1>
 
@@ -228,6 +233,7 @@
       </div>
 
       <!-- Table -->
+       <div class="overflow-x-auto">
       <table class="w-full min-w-[850px]">
 
         <thead>
@@ -366,11 +372,11 @@
         </tbody>
 
       </table>
-
+</div>
     </div>
 
     <!-- Summary -->
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-10">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-10 w-full">
 
       <!-- Card -->
       <div class="card p-6">
@@ -417,5 +423,27 @@
 
 </div>
 
+
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", function () {
+
+  if (mobileMenu.classList.contains("hidden")) {
+
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+
+  } else {
+
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+
+  }
+
+});
+</script>
 </body>
 </html>

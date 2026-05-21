@@ -11,6 +11,7 @@
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
@@ -66,12 +67,21 @@
 
 <body>
 
-  <div class="flex min-h-screen">
+<div class="flex min-h-screen">
 
-    <!-- Sidebar -->
-    <aside
-      class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col"
-    >
+  <!-- OVERLAY -->
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside
+    id="mobileMenu"
+    class="fixed lg:static top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col"
+  >
+
+    <div class="flex items-center justify-between lg:block">
 
       <!-- Logo -->
       <div class="flex items-center gap-4 mb-10">
@@ -94,341 +104,385 @@
 
       </div>
 
-      <!-- Nav -->
-      <nav class="space-y-3">
+      <!-- CLOSE BTN -->
+      <button
+        id="closeBtn"
+        class="lg:hidden bg-red-500 text-white px-3 py-2 rounded-xl mb-6"
+      >
+        ✕
+      </button>
 
-        <a href="dashboard.html" class="sidebar-link">
-          📊 Dashboard
-        </a>
+    </div>
 
-        <a href="students.html" class="sidebar-link">
-          👨‍🎓 Students
-        </a>
+    <!-- Nav -->
+    <nav class="space-y-3">
 
-        <a href="attendance.html" class="sidebar-link">
-          📅 Attendance
-        </a>
+      <a href="dashboard.html" class="sidebar-link">
+        📊 Dashboard
+      </a>
 
-        <a href="marks.html" class="sidebar-link sidebar-active">
-          📝 Marks & Tests
-        </a>
+      <a href="students.html" class="sidebar-link">
+        👨‍🎓 Students
+      </a>
 
-        <a href="anouncements.html" class="sidebar-link">
-          🔔 Notices
-        </a>
+      <a href="attendance.html" class="sidebar-link">
+        📅 Attendance
+      </a>
 
-      </nav>
+      <a href="marks.html" class="sidebar-link sidebar-active">
+        📝 Marks & Tests
+      </a>
 
-      <!-- Bottom -->
-      <div class="mt-auto pt-10">
+      <a href="anouncements.html" class="sidebar-link">
+        🔔 Notices
+      </a>
 
-        <a
-          href="../../index.html"
-          class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+    </nav>
+
+    <!-- Bottom -->
+    <div class="mt-auto pt-10">
+
+      <a
+        href="../../index.html"
+        class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+      >
+        🚪 Logout
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 p-4 md:p-6 lg:p-10 overflow-hidden">
+
+    <!-- Mobile Top -->
+    <div class="flex items-center justify-between mb-6 lg:hidden">
+
+      <h1 class="text-2xl font-bold text-slate-900">
+        Coachly
+      </h1>
+
+      <button
+        id="menuBtn"
+        class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+      >
+        ☰
+      </button>
+
+    </div>
+
+    <!-- Top -->
+    <div
+      class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5"
+    >
+
+      <div>
+
+        <p
+          class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
         >
-          🚪 Logout
-        </a>
+          Marks Management
+        </p>
 
-      </div>
-
-    </aside>
-
-    <!-- Main -->
-    <main class="flex-1 p-4 md:p-6 lg:p-10">
-
-      <!-- Mobile Top -->
-      <div class="flex items-center justify-between mb-6 lg:hidden">
-
-        <h1 class="text-2xl font-bold text-slate-900">
-          Coachly
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3 leading-tight">
+          Marks & Tests 📝
         </h1>
 
-        <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
-          ☰
-        </button>
+      </div>
+
+      <button
+        class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold shadow-lg w-full lg:w-auto"
+      >
+        + Create New Test
+      </button>
+
+    </div>
+
+    <!-- Create Test -->
+    <div class="card p-5 md:p-8 mt-10">
+
+      <div class="mb-8">
+
+        <p
+          class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+        >
+          New Test
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Create Test Details
+        </h2>
 
       </div>
 
-      <!-- Top -->
-      <div
-        class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5"
-      >
+      <!-- Form -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <div>
 
-          <p
-            class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
-          >
-            Marks Management
-          </p>
+          <label class="block mb-3 text-slate-600 font-semibold">
+            Subject Name
+          </label>
 
-          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3 leading-tight">
-            Marks & Tests 📝
-          </h1>
+          <input
+            type="text"
+            placeholder="Ex: Physics"
+            class="input-style"
+          />
 
         </div>
 
-        <button
-          class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold shadow-lg w-full lg:w-auto"
+        <div>
+
+          <label class="block mb-3 text-slate-600 font-semibold">
+            Maximum Marks
+          </label>
+
+          <input
+            type="number"
+            placeholder="Ex: 100"
+            class="input-style"
+          />
+
+        </div>
+
+        <div>
+
+          <label class="block mb-3 text-slate-600 font-semibold">
+            Test Date
+          </label>
+
+          <input
+            type="date"
+            class="input-style"
+          />
+
+        </div>
+
+        <div>
+
+          <label class="block mb-3 text-slate-600 font-semibold">
+            Test Type
+          </label>
+
+          <select class="input-style">
+
+            <option>
+              Weekly Test
+            </option>
+
+            <option>
+              Monthly Test
+            </option>
+
+            <option>
+              Final Exam
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <!-- Btn -->
+      <button
+        class="mt-8 bg-blue-700 hover:bg-blue-800 transition text-white px-7 py-4 rounded-2xl font-semibold shadow-lg w-full md:w-auto"
+      >
+        Create Test
+      </button>
+
+    </div>
+
+    <!-- Marks Table -->
+    <div class="card p-4 md:p-8 mt-10 overflow-x-auto">
+
+      <div class="mb-8">
+
+        <p
+          class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
         >
-          + Create New Test
-        </button>
+          Student Scores
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Upload Student Marks
+        </h2>
 
       </div>
 
-      <!-- Create Test -->
-      <div class="card p-5 md:p-8 mt-10">
+      <!-- Table -->
+      <table class="w-full min-w-[850px]">
 
-        <div class="mb-8">
+        <thead>
 
-          <p
-            class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
-          >
-            New Test
-          </p>
+          <tr class="border-b border-slate-200 text-left">
 
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
-            Create Test Details
-          </h2>
+            <th class="pb-5 text-slate-500 font-semibold">
+              Student
+            </th>
 
-        </div>
+            <th class="pb-5 text-slate-500 font-semibold">
+              Code
+            </th>
 
-        <!-- Form -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <th class="pb-5 text-slate-500 font-semibold">
+              Subject
+            </th>
 
-          <div>
+            <th class="pb-5 text-slate-500 font-semibold">
+              Marks
+            </th>
 
-            <label class="block mb-3 text-slate-600 font-semibold">
-              Subject Name
-            </label>
+            <th class="pb-5 text-slate-500 font-semibold">
+              Grade
+            </th>
 
-            <input
-              type="text"
-              placeholder="Ex: Physics"
-              class="input-style"
-            />
+            <th class="pb-5 text-slate-500 font-semibold">
+              Action
+            </th>
 
-          </div>
+          </tr>
 
-          <div>
+        </thead>
 
-            <label class="block mb-3 text-slate-600 font-semibold">
-              Maximum Marks
-            </label>
+        <tbody class="divide-y divide-slate-100">
 
-            <input
-              type="number"
-              placeholder="Ex: 100"
-              class="input-style"
-            />
+          <!-- Row -->
+          <tr>
 
-          </div>
+            <td class="py-6 font-semibold text-slate-900">
+              Faizan Khan
+            </td>
 
-          <div>
+            <td class="py-6 text-blue-700 font-bold">
+              STD-2938
+            </td>
 
-            <label class="block mb-3 text-slate-600 font-semibold">
-              Test Date
-            </label>
+            <td class="py-6 text-slate-600">
+              Physics
+            </td>
 
-            <input
-              type="date"
-              class="input-style"
-            />
+            <td class="py-6">
 
-          </div>
+              <input
+                type="number"
+                value="92"
+                class="w-24 px-4 py-2 border rounded-xl outline-none"
+              />
 
-          <div>
+            </td>
 
-            <label class="block mb-3 text-slate-600 font-semibold">
-              Test Type
-            </label>
+            <td class="py-6">
 
-            <select class="input-style">
+              <span
+                class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold"
+              >
+                A+
+              </span>
 
-              <option>
-                Weekly Test
-              </option>
+            </td>
 
-              <option>
-                Monthly Test
-              </option>
+            <td class="py-6">
 
-              <option>
-                Final Exam
-              </option>
+              <button
+                class="bg-blue-700 hover:bg-blue-800 transition text-white px-5 py-2 rounded-xl font-semibold"
+              >
+                Save
+              </button>
 
-            </select>
+            </td>
 
-          </div>
+          </tr>
 
-        </div>
+          <!-- Row -->
+          <tr>
 
-        <!-- Btn -->
-        <button
-          class="mt-8 bg-blue-700 hover:bg-blue-800 transition text-white px-7 py-4 rounded-2xl font-semibold shadow-lg w-full md:w-auto"
-        >
-          Create Test
-        </button>
+            <td class="py-6 font-semibold text-slate-900">
+              Aryan Sharma
+            </td>
 
-      </div>
+            <td class="py-6 text-blue-700 font-bold">
+              STD-1822
+            </td>
 
-      <!-- Marks Table -->
-      <div class="card p-4 md:p-8 mt-10 overflow-x-auto">
+            <td class="py-6 text-slate-600">
+              Chemistry
+            </td>
 
-        <div class="mb-8">
+            <td class="py-6">
 
-          <p
-            class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
-          >
-            Student Scores
-          </p>
+              <input
+                type="number"
+                value="78"
+                class="w-24 px-4 py-2 border rounded-xl outline-none"
+              />
 
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
-            Upload Student Marks
-          </h2>
+            </td>
 
-        </div>
+            <td class="py-6">
 
-        <!-- Table -->
-        <table class="w-full min-w-[850px]">
+              <span
+                class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold"
+              >
+                B+
+              </span>
 
-          <thead>
+            </td>
 
-            <tr class="border-b border-slate-200 text-left">
+            <td class="py-6">
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Student
-              </th>
+              <button
+                class="bg-blue-700 hover:bg-blue-800 transition text-white px-5 py-2 rounded-xl font-semibold"
+              >
+                Save
+              </button>
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Code
-              </th>
+            </td>
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Subject
-              </th>
+          </tr>
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Marks
-              </th>
+        </tbody>
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Grade
-              </th>
+      </table>
 
-              <th class="pb-5 text-slate-500 font-semibold">
-                Action
-              </th>
+    </div>
 
-            </tr>
+  </main>
 
-          </thead>
+</div>
 
-          <tbody class="divide-y divide-slate-100">
+<!-- SCRIPT -->
+<script>
 
-            <!-- Row -->
-            <tr>
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const closeBtn = document.getElementById("closeBtn");
+const overlay = document.getElementById("overlay");
 
-              <td class="py-6 font-semibold text-slate-900">
-                Faizan Khan
-              </td>
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.remove("hidden");
+  mobileMenu.classList.add("flex");
 
-              <td class="py-6 text-blue-700 font-bold">
-                STD-2938
-              </td>
+  overlay.classList.remove("hidden");
+});
 
-              <td class="py-6 text-slate-600">
-                Physics
-              </td>
+closeBtn.addEventListener("click", () => {
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
 
-              <td class="py-6">
+  overlay.classList.add("hidden");
+});
 
-                <input
-                  type="number"
-                  value="92"
-                  class="w-24 px-4 py-2 border rounded-xl outline-none"
-                />
+overlay.addEventListener("click", () => {
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
 
-              </td>
+  overlay.classList.add("hidden");
+});
 
-              <td class="py-6">
-
-                <span
-                  class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold"
-                >
-                  A+
-                </span>
-
-              </td>
-
-              <td class="py-6">
-
-                <button
-                  class="bg-blue-700 hover:bg-blue-800 transition text-white px-5 py-2 rounded-xl font-semibold"
-                >
-                  Save
-                </button>
-
-              </td>
-
-            </tr>
-
-            <!-- Row -->
-            <tr>
-
-              <td class="py-6 font-semibold text-slate-900">
-                Aryan Sharma
-              </td>
-
-              <td class="py-6 text-blue-700 font-bold">
-                STD-1822
-              </td>
-
-              <td class="py-6 text-slate-600">
-                Chemistry
-              </td>
-
-              <td class="py-6">
-
-                <input
-                  type="number"
-                  value="78"
-                  class="w-24 px-4 py-2 border rounded-xl outline-none"
-                />
-
-              </td>
-
-              <td class="py-6">
-
-                <span
-                  class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold"
-                >
-                  B+
-                </span>
-
-              </td>
-
-              <td class="py-6">
-
-                <button
-                  class="bg-blue-700 hover:bg-blue-800 transition text-white px-5 py-2 rounded-xl font-semibold"
-                >
-                  Save
-                </button>
-
-              </td>
-
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </main>
-
-  </div>
+</script>
 
 </body>
 </html>

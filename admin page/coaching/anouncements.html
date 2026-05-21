@@ -65,8 +65,18 @@
 
 <div class="flex min-h-screen">
 
+<!-- OVERLAY -->
+<div
+  id="overlay"
+  class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"
+></div>
+
+
   <!-- Sidebar -->
-  <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col">
+ <aside
+  id="mobileMenu"
+  class="fixed lg:static top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col"
+>
 
     <!-- Logo -->
     <div class="flex items-center gap-4 mb-10">
@@ -86,6 +96,15 @@
       </div>
 
     </div>
+
+<!-- CLOSE BTN -->
+<button
+  id="closeBtn"
+  class="lg:hidden bg-red-500 text-white px-3 py-2 rounded-xl mb-6"
+>
+  ✕
+</button>
+
 
     <!-- Nav -->
     <nav class="space-y-3">
@@ -128,6 +147,23 @@
 
   <!-- Main -->
   <main class="flex-1 p-4 md:p-6 lg:p-10">
+
+<!-- MOBILE TOP -->
+<div class="flex items-center justify-between mb-6 lg:hidden">
+
+  <h1 class="text-2xl font-bold text-slate-900">
+    Coachly
+  </h1>
+
+  <button
+    id="menuBtn"
+    class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+  >
+    ☰
+  </button>
+
+</div>
+    
 
     <!-- Top -->
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
@@ -337,6 +373,38 @@
   </main>
 
 </div>
+
+<script>
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const closeBtn = document.getElementById("closeBtn");
+const overlay = document.getElementById("overlay");
+
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.remove("hidden");
+  mobileMenu.classList.add("flex");
+
+  overlay.classList.remove("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
+
+  overlay.classList.add("hidden");
+});
+
+overlay.addEventListener("click", () => {
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
+
+  overlay.classList.add("hidden");
+});
+
+</script>
+
+
 
 </body>
 </html>

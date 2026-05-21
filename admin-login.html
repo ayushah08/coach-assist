@@ -74,6 +74,22 @@
         animation: float 3s ease-in-out infinite;
       }
 
+      .btn-animate {
+        transition: all 0.3s ease;
+      }
+
+      .btn-animate:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(29, 78, 216, 0.25);
+      }
+
+      .input-style {
+        transition: all 0.3s ease;
+      }
+
+      .input-style:focus {
+        transform: scale(1.01);
+      }
       @keyframes float {
         0% {
           transform: translateY(0px);
@@ -251,19 +267,80 @@
                   Password
                 </label>
 
-                <a
-                  href="#"
-                  class="text-blue-700 text-sm font-medium hover:underline"
+                <button
+                  type="button"
+                  id="forgotBtn"
+                  class="text-blue-700 font-medium hover:underline"
                 >
                   Forgot?
-                </a>
+                </button>
               </div>
 
-              <input
-                type="password"
-                placeholder="Enter password"
-                class="input-style"
-              />
+              <div class="relative">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter password"
+                  class="input-style pr-14"
+                />
+
+                 <!-- Toggle Button -->
+                <button
+                  type="button"
+                  id="togglePassword"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-700 transition duration-300"
+                >
+                  <!-- Eye Icon -->
+                  <svg
+                    id="eyeIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5
+        c4.478 0 8.268 2.943 9.542 7
+        -1.274 4.057-5.064 7-9.542 7
+        -4.477 0-8.268-2.943-9.542-7z"
+                    />
+
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0
+        3 3 0 016 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+                <!-- Reset Password Box -->
+
+                <div
+                  id="resetBox"
+                  class="hidden mt-4 p-4 rounded-2xl bg-blue-50 border border-blue-100"
+                >
+                  <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="Enter new password"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none focus:border-blue-600"
+                  />
+
+                  <button
+                    type="button"
+                    id="savePassword"
+                    class="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-xl font-semibold transition duration-300"
+                  >
+                    Save New Password
+                  </button>
+                </div>
+
+               
             </div>
 
             <!-- Remember -->
@@ -278,7 +355,7 @@
             <!-- Button -->
             <a
               href="admin page/dashboard.html"
-              class="btn-primary flex items-center justify-center"
+              class="btn-primary btn-animate flex items-center justify-center"
             >
               Login to Admin Panel →
             </a>
@@ -300,5 +377,80 @@
         </div>
       </div>
     </section>
+    <script>
+      const password = document.getElementById("password");
+
+      const togglePassword = document.getElementById("togglePassword");
+
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      togglePassword.addEventListener("click", function () {
+        if (password.type === "password") {
+          password.type = "text";
+
+          eyeIcon.innerHTML = `
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3 3l18 18" />
+
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M10.477 10.489A3 3 0 0012 15
+      a3 3 0 002.51-4.523" />
+
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M9.88 5.09A9.953 9.953 0 0112 5
+      c4.478 0 8.268 2.943 9.542 7
+      a9.97 9.97 0 01-4.132 5.411M6.228 6.228
+      A9.956 9.956 0 002.458 12
+      c1.274 4.057 5.064 7 9.542 7
+      a9.953 9.953 0 005.09-1.388" />
+    `;
+        } else {
+          password.type = "password";
+
+          eyeIcon.innerHTML = `
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M2.458 12C3.732 7.943 7.523 5 12 5
+        c4.478 0 8.268 2.943 9.542 7
+        -1.274 4.057-5.064 7-9.542 7
+        -4.477 0-8.268-2.943-9.542-7z"
+      />
+
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15 12a3 3 0 11-6 0
+        3 3 0 016 0z"
+      />
+    `;
+        }
+      });
+
+      const forgotBtn = document.getElementById("forgotBtn");
+
+      const resetBox = document.getElementById("resetBox");
+
+      const savePassword = document.getElementById("savePassword");
+
+      forgotBtn.addEventListener("click", () => {
+        resetBox.classList.toggle("hidden");
+      });
+
+      savePassword.addEventListener("click", () => {
+        const newPassword = document.getElementById("newPassword").value;
+
+        if (newPassword.length < 4) {
+          alert("Password too short 😅");
+        } else {
+          alert("New password saved successfully ✅");
+
+          resetBox.classList.add("hidden");
+        }
+      });
+    </script>
   </body>
 </html>
