@@ -35,7 +35,16 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
+
+                .cors(cors -> {})
+
                 .csrf(csrf -> csrf.disable())
+
+                .httpBasic(httpBasic -> httpBasic.disable())
+
+                .formLogin(form -> form.disable())
+
+                .logout(logout -> logout.disable())
 
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(
@@ -45,9 +54,68 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+//Paarent and COaching Both
                         .requestMatchers(
-                                "/api/auth/**"
+
+                                "/api/marks/student/**",
+
+                                "/api/marks/analytics/**"
+
+                        ).hasAnyRole(
+                                "PARENT",
+                                "COACHING"
+                        )
+                        .requestMatchers(
+
+                                "/api/admin/login",
+
+                                "/api/coaching/login",
+                                "/api/coaching/register",
+
+                                "/api/parent/login",
+                                "/swagger-ui/**",
+
+                                "/v3/api-docs/**"
+
                         ).permitAll()
+
+                        // ADMIN
+                        .requestMatchers(
+
+                                "/api/coaching/all",
+                                "/api/coaching/search",
+                                "/api/coaching/delete/**"
+
+                        ).hasRole("ADMIN")
+
+                        // PARENT FIRST (IMPORTANT)
+                        .requestMatchers(
+
+                                "/api/marks/student/**",
+
+                                "/api/attendance/student/**",
+
+                                "/api/announcement/active/**"
+
+                        ).hasRole("PARENT")
+
+                        // COACHING
+                        .requestMatchers(
+
+                                "/api/student/**",
+
+                                "/api/attendance/**",
+
+                                "/api/marks/**",
+
+                                "/api/announcement/create",
+
+                                "/api/dashboard/**"
+
+                        ).hasRole("COACHING")
+
+
+
 
                         .anyRequest().authenticated()
                 )

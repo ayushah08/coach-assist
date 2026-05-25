@@ -3,6 +3,7 @@ package com.coachassist.backend.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -10,28 +11,41 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY =
-            "coachassistsecretkeycoachassistsecretkey123456789";
+    @Value("${jwt.secret}")
+    private String secretKey;
 
-    public String generateToken(String username) {
+    public String generateToken(
+
+            String username,
+
+            String role
+    ) {
 
         return Jwts.builder()
+
                 .subject(username)
+
+                .claim("role", role)
+
                 .issuedAt(new Date())
+
                 .expiration(
-                        new Date(System.currentTimeMillis() + 1000 * 60 * 60)
+                        new Date(
+                                System.currentTimeMillis()
+                                        + 1000 * 60 * 60
+                        )
                 )
+
                 .signWith(
                         SignatureAlgorithm.HS256,
-                        SECRET_KEY
-                )
+                        secretKey                )
+
                 .compact();
     }
-
     public String getUsernameFromToken(String token) {
 
         Claims claims = (Claims) Jwts.parser()
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey(secretKey)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
@@ -44,7 +58,7 @@ public class JwtService {
 
         try{
             Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
+                    .setSigningKey(secretKey)
                     .build()
                     .parseSignedClaims(token);
             return true;
@@ -53,5 +67,18 @@ public class JwtService {
         catch (Exception e){
             return false;
         }
+    }
+
+    public String getRoleFromToken(
+            String token
+    ) {
+
+        Claims claims = (Claims) Jwts.parser()
+                .setSigningKey(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.get("role", String.class);
     }
 }

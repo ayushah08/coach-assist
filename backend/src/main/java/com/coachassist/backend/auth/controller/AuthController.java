@@ -1,7 +1,7 @@
 package com.coachassist.backend.auth.controller;
 
 import com.coachassist.backend.auth.service.AuthService;
-import com.coachassist.backend.dto.request.AdminLoginRequest;
+import com.coachassist.backend.admin.dto.request.AdminLoginRequest;
 import com.coachassist.backend.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

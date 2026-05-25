@@ -1,4 +1,4 @@
-package com.coachassist.backend.dto.request;
+package com.coachassist.backend.coaching.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AdminLoginRequest {
+public class CoachingLoginRequest {
 
-    private String username;
+    private String email;
+
     private String password;
 }

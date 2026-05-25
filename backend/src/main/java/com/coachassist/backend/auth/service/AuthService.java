@@ -2,9 +2,8 @@ package com.coachassist.backend.auth.service;
 
 import com.coachassist.backend.admin.entity.Admin;
 import com.coachassist.backend.admin.repository.AdminRepository;
-import com.coachassist.backend.dto.request.AdminLoginRequest;
+import com.coachassist.backend.admin.dto.request.AdminLoginRequest;
 import com.coachassist.backend.dto.response.ApiResponse;
-import com.coachassist.backend.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class AuthService {
 
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final com.coachassist.backend.security.jwt.JwtService jwtService;
     public ApiResponse login(AdminLoginRequest loginRequest) {
 
 
@@ -36,7 +35,10 @@ public class AuthService {
         if (passwordEncoder.matches(admin.getPassword(), loginRequest.getPassword())) {
             return new ApiResponse("Wrong Password ", false);
         }
-        String token = jwtService.generateToken(admin.getUsername());
+        String token =  jwtService.generateToken(
+                admin.getUsername(),
+                admin.getRole().name()
+        );
 
         return new ApiResponse(token, true);
     }

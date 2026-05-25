@@ -3,6 +3,7 @@ package com.coachassist.backend.admin.config;
 
 import com.coachassist.backend.admin.entity.Admin;
 import com.coachassist.backend.admin.repository.AdminRepository;
+import com.coachassist.backend.security.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +21,7 @@ public class AdminSeeder implements CommandLineRunner {
 
         if (adminRepository.findByUsername("admin").isEmpty()) {
             Admin admin = new Admin();
+            admin.setRole(Role.ROLE_ADMIN);
             admin.setUsername("admin");
             admin.setPassword(passwordEncoder.encode("admin123"));
 

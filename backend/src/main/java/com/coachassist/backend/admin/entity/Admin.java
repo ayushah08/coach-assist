@@ -1,5 +1,6 @@
 package com.coachassist.backend.admin.entity;
 
+import com.coachassist.backend.security.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,6 @@ public class Admin {
 
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
