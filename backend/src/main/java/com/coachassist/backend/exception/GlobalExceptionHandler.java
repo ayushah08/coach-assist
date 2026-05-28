@@ -8,8 +8,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.HashMap;
-
 import java.util.Map;
+
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -21,9 +21,11 @@ public class GlobalExceptionHandler {
             Exception exception
     ) {
 
+        exception.printStackTrace();
+
         ApiResponse response =
                 new ApiResponse(
-                        "Something Went Wrong",
+                        exception.getMessage(),
                         false
                 );
 
