@@ -1,0 +1,37 @@
+services:
+
+  postgres:
+
+    image: postgres:16
+
+    container_name: coachassist-postgres
+
+    environment:
+      POSTGRES_DB: coachassist
+
+      POSTGRES_USER: postgres
+
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5432:5432"
+
+  backend:
+
+    build: .
+
+    container_name: coachassist-backend
+
+    depends_on:
+      - postgres
+
+    ports:
+      - "8080:8080"
+
+    environment:
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/coachassist
+
+      SPRING_DATASOURCE_USERNAME: postgres
+
+      SPRING_DATASOURCE_PASSWORD: postgres
