@@ -47,21 +47,23 @@
     </style>
   </head>
 
-  <body class="text-slate-900">
+  <body class="text-slate-900 overflow-x-hidden">
     <!-- Navbar -->
     <nav class="w-full bg-white border-b border-slate-200 sticky top-0 z-50">
       <div
-        class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between"
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between"
       >
         <!-- Logo -->
         <div class="flex items-center gap-3">
           <div
-            class="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center font-bold text-lg shadow-md"
+            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center font-bold text-lg shadow-md"
           >
             C
           </div>
 
-          <h1 class="text-2xl font-bold tracking-tight">Coachly</h1>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-tight">
+            Coachly
+          </h1>
         </div>
 
         <!-- Menu -->
@@ -85,7 +87,7 @@
         </div>
 
         <!-- Mobile Button -->
-        <button class="md:hidden">
+        <button id= "menuBtn" class="md:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-7 h-7"
@@ -104,16 +106,44 @@
       </div>
     </nav>
 
+
+    <div
+  id="mobileMenu"
+  class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5"
+>
+  <div class="flex flex-col gap-5 text-slate-700 font-medium text-lg">
+
+    <a href="admin-login.html" class="hover:text-blue-700 transition">
+      Admin
+    </a>
+
+    <a href="coaching-login.html" class="hover:text-blue-700 transition">
+      Coaching
+    </a>
+
+    <a
+      href="admin%20page/parent-access.html"
+      class="hover:text-blue-700 transition"
+    >
+      Parent
+    </a>
+
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="grid-bg min-h-screen">
+
     <!-- Hero Section -->
     <section class="grid-bg min-h-screen">
-      <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <!-- Left Content -->
           <div>
             <!-- Tag -->
-            <div class="mb-7">
+            <div class="mb-6 sm:mb-7">
               <span
-                class="uppercase tracking-[4px] text-slate-500 text-sm border-b border-slate-400 pb-1 font-semibold"
+                class="uppercase tracking-[3px] sm:tracking-[4px] text-slate-500 text-xs sm:text-sm border-b border-slate-400 pb-1 font-semibold"
               >
                 Coaching Assistant Platform
               </span>
@@ -121,7 +151,7 @@
 
             <!-- Heading -->
             <h1
-              class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-slate-900"
+              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-slate-900"
             >
               A control room for institutes.
               <br />
@@ -129,24 +159,29 @@
             </h1>
 
             <!-- Description -->
-            <p class="mt-8 text-slate-600 text-xl leading-relaxed max-w-2xl">
+            <p
+              class="mt-6 sm:mt-8 text-slate-600 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl"
+            >
               Coachings manage students, attendance and marks in one place.
               Parents unlock a live view of their child with a simple code — no
               logins, no friction.
             </p>
 
             <!-- Buttons -->
-            <div class="mt-10 flex flex-col sm:flex-row gap-5">
-              <a href="coaching-register.html">
+            <div
+              class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-5"
+            >
+              <a href="coaching-register.html" class="w-full sm:w-auto">
                 <button
-                  class="bg-blue-700 hover:bg-blue-800 transition text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-lg shadow-blue-200"
+                  class="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 transition text-white px-6 sm:px-8 py-4 rounded-2xl text-base sm:text-lg font-semibold shadow-lg shadow-blue-200"
                 >
                   Register your coaching →
                 </button>
               </a>
+
               <a
                 href="admin%20page/parent-access.html"
-                class="border border-slate-300 hover:border-blue-700 hover:text-blue-700 transition px-8 py-5 rounded-2xl font-semibold text-lg"
+                class="w-full sm:w-auto text-center border border-slate-300 hover:border-blue-700 hover:text-blue-700 transition px-6 sm:px-8 py-4 rounded-2xl font-semibold text-base sm:text-lg"
               >
                 I'm a parent
               </a>
@@ -155,22 +190,26 @@
 
           <!-- Right Dashboard Preview -->
           <div class="relative">
-            <!-- Floating Badge -->
-
             <!-- Dashboard Card -->
             <div
-              class="bg-white border border-slate-200 rounded-[32px] p-8 shadow-2xl"
+              class="bg-white border border-slate-200 rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden"
             >
               <!-- Top -->
-              <div class="flex items-center justify-between mb-8">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8"
+              >
                 <div>
                   <p
-                    class="uppercase tracking-[4px] text-sm text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
+                    class="uppercase tracking-[3px] sm:tracking-[4px] text-xs sm:text-sm text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
                   >
                     Coaching Panel
                   </p>
 
-                  <h2 class="text-4xl font-bold mt-4">Bright Minds Academy</h2>
+                  <h2
+                    class="text-2xl sm:text-3xl lg:text-4xl font-bold mt-4 break-words"
+                  >
+                    Bright Minds Academy
+                  </h2>
                 </div>
 
                 <div
@@ -195,40 +234,42 @@
 
               <!-- Coaching Code -->
               <div
-                class="bg-blue-50 border border-blue-100 rounded-2xl p-5 flex items-center justify-between mb-8"
+                class="bg-blue-50 border border-blue-100 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between mb-8"
               >
                 <div>
                   <p
-                    class="uppercase text-sm tracking-[4px] text-slate-500 font-semibold"
+                    class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-500 font-semibold"
                   >
                     Coaching Code
                   </p>
                 </div>
 
                 <h3
-                  class="text-3xl font-extrabold text-blue-800 tracking-wider"
+                  class="text-2xl sm:text-3xl font-extrabold text-blue-800 tracking-wider break-all"
                 >
                   CO-TDCQ37
                 </h3>
               </div>
 
               <!-- Stats -->
-              <div class="grid sm:grid-cols-2 gap-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <!-- Card -->
                 <div
-                  class="bg-white border border-slate-200 rounded-3xl p-6 card-hover"
+                  class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 card-hover"
                 >
                   <p
-                    class="uppercase text-sm tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
+                    class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
                   >
                     Total Students
                   </p>
 
                   <div class="mt-5 flex items-center justify-between">
-                    <h2 class="text-5xl font-bold">248</h2>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                      248
+                    </h2>
 
                     <div
-                      class="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
+                      class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
                     >
                       👨‍🎓
                     </div>
@@ -237,19 +278,21 @@
 
                 <!-- Card -->
                 <div
-                  class="bg-white border border-slate-200 rounded-3xl p-6 card-hover"
+                  class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 card-hover"
                 >
                   <p
-                    class="uppercase text-sm tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
+                    class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
                   >
                     Present Today
                   </p>
 
                   <div class="mt-5 flex items-center justify-between">
-                    <h2 class="text-5xl font-bold">219</h2>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                      219
+                    </h2>
 
                     <div
-                      class="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
+                      class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
                     >
                       📅
                     </div>
@@ -258,36 +301,42 @@
 
                 <!-- Card -->
                 <div
-                  class="bg-white border border-slate-200 rounded-3xl p-6 card-hover"
+                  class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 card-hover"
                 >
                   <p
-                    class="uppercase text-sm tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
+                    class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
                   >
                     Attendance
                   </p>
 
                   <div class="mt-5">
-                    <h2 class="text-5xl font-bold">91%</h2>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                      91%
+                    </h2>
 
-                    <p class="mt-2 text-slate-500">Rolling monthly average</p>
+                    <p class="mt-2 text-sm sm:text-base text-slate-500">
+                      Rolling monthly average
+                    </p>
                   </div>
                 </div>
 
                 <!-- Card -->
                 <div
-                  class="bg-white border border-slate-200 rounded-3xl p-6 card-hover"
+                  class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 card-hover"
                 >
                   <p
-                    class="uppercase text-sm tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
+                    class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-500 font-semibold border-b border-slate-300 inline-block pb-1"
                   >
                     Tests Uploaded
                   </p>
 
                   <div class="mt-5 flex items-center justify-between">
-                    <h2 class="text-5xl font-bold">18</h2>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                      18
+                    </h2>
 
                     <div
-                      class="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
+                      class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 flex items-center justify-center"
                     >
                       📘
                     </div>
@@ -299,5 +348,21 @@
         </div>
       </div>
     </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", function () {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
+
+  });
+</script>
+
   </body>
 </html>

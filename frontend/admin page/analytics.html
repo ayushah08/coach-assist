@@ -63,8 +63,19 @@
 <div class="flex min-h-screen">
 
   <!-- SIDEBAR -->
-  <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col">
+<aside
+  id="mobileMenu"
+  class="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 p-6 fixed lg:static top-0 left-0 z-50 min-h-screen"
+>
 
+<div class="flex justify-end lg:hidden mb-6">
+  <button
+    id="closeBtn"
+    class="text-3xl font-bold text-slate-700"
+  >
+    ×
+  </button>
+</div>
     <!-- Logo -->
     <div class="flex items-center gap-4 mb-10">
 
@@ -133,10 +144,12 @@
         Coachly Admin
       </h1>
 
-      <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
-        ☰
-      </button>
-
+      <button
+  id="menuBtn"
+  class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+>
+  ☰
+</button>
     </div>
 
     <!-- TOP -->
@@ -352,6 +365,23 @@
   </main>
 
 </div>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("closeBtn");
+
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+  });
+</script>
+
 
 </body>
 </html>

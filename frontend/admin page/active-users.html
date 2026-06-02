@@ -66,11 +66,24 @@
 
 <body>
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen overflow-x-hidden">
 
   <!-- SIDEBAR -->
-  <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col">
+ <aside
+  id="mobileMenu"
+  class="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 p-6 fixed lg:static top-0 left-0 z-50 min-h-screen"
+>
 
+<div class="flex justify-end lg:hidden mb-6">
+
+  <button
+    id="closeBtn"
+    class="text-3xl font-bold text-slate-700"
+  >
+    ×
+  </button>
+
+</div>
     <!-- Logo -->
     <div class="flex items-center gap-4 mb-10">
 
@@ -130,39 +143,41 @@
   </aside>
 
   <!-- MAIN -->
-  <main class="flex-1 p-4 md:p-6 lg:p-10">
+  <main class="flex-1 w-full overflow-hidden p-4 md:p-6 lg:p-10">
 
-    <!-- MOBILE HEADER -->
-    <div class="flex items-center justify-between mb-6 lg:hidden">
+    <!-- Mobile Header -->
+<div class="flex items-center justify-between mb-6 lg:hidden">
 
-      <h1 class="text-2xl font-bold text-slate-900">
-        Coachly Admin
-      </h1>
+  <h1 class="text-2xl font-bold text-slate-900">
+    Coachly
+  </h1>
 
-      <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
-        ☰
-      </button>
+  <button
+    id="menuBtn"
+    class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+  >
+    ☰
+  </button>
 
-    </div>
+</div>
 
     <!-- TOP -->
-    <div>
-
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
       <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
         Platform Monitoring
       </p>
 
-      <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3">
+    <h1 class="text-3xl md:text-5xl break-words font-extrabold text-slate-900 mt-3">
         Active Users 👥
       </h1>
 
     </div>
 
     <!-- STATS -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-10 w-full">
 
       <!-- Card -->
-      <div class="card p-6">
+      <div class="card p-6 w-full">
 
         <p class="text-slate-500 font-medium">
           Online Coachings
@@ -247,6 +262,7 @@
       </div>
 
       <!-- TABLE -->
+       <div class="overflow-x-auto">
       <table class="w-full min-w-[850px]">
 
         <thead>
@@ -387,7 +403,7 @@
         </tbody>
 
       </table>
-
+</div>
     </div>
 
     <!-- ACTIVITY -->
@@ -536,5 +552,21 @@
 
 </div>
 
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("closeBtn");
+
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+  });
+</script>
 </body>
 </html>

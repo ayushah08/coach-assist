@@ -21,6 +21,7 @@
     body{
       font-family:'Inter',sans-serif;
       background:#f8fafc;
+      overflow-x:hidden;
     }
 
     .card{
@@ -60,10 +61,19 @@
 
 <body>
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen overflow-x-hidden">
+
+  <!-- MOBILE OVERLAY -->
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"
+  ></div>
 
   <!-- SIDEBAR -->
-  <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col">
+  <aside
+    id="mobileMenu"
+    class="fixed lg:static top-0 left-0 z-50 w-72 bg-white border-r border-slate-200 p-6 flex flex-col min-h-screen transform -translate-x-full lg:translate-x-0 transition-transform duration-300"
+  >
 
     <!-- Logo -->
     <div class="flex items-center gap-4 mb-10">
@@ -124,7 +134,7 @@
   </aside>
 
   <!-- MAIN -->
-  <main class="flex-1 p-4 md:p-6 lg:p-10">
+  <main class="flex-1 p-4 md:p-6 lg:p-10 w-full overflow-x-hidden">
 
     <!-- MOBILE HEADER -->
     <div class="flex items-center justify-between mb-6 lg:hidden">
@@ -133,7 +143,10 @@
         Coachly Admin
       </h1>
 
-      <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
+      <button
+        id="menuBtn"
+        class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+      >
         ☰
       </button>
 
@@ -309,118 +322,6 @@
 
         </div>
 
-        <!-- Recent Coachings -->
-        <div class="card p-4 md:p-8 overflow-x-auto">
-
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
-
-            <div>
-
-              <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
-                New Registrations
-              </p>
-
-              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
-                Recent Coaching Requests
-              </h2>
-
-            </div>
-
-          </div>
-
-          <!-- TABLE -->
-          <table class="w-full min-w-[750px]">
-
-            <thead>
-
-              <tr class="border-b border-slate-200 text-left">
-
-                <th class="pb-5 text-slate-500 font-semibold">
-                  Coaching
-                </th>
-
-                <th class="pb-5 text-slate-500 font-semibold">
-                  Owner
-                </th>
-
-                <th class="pb-5 text-slate-500 font-semibold">
-                  Status
-                </th>
-
-                <th class="pb-5 text-slate-500 font-semibold">
-                  Action
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody class="divide-y divide-slate-100">
-
-              <!-- Row -->
-              <tr>
-
-                <td class="py-6 font-semibold text-slate-900">
-                  Bright Minds Academy
-                </td>
-
-                <td class="py-6 text-slate-600">
-                  Faizan Khan
-                </td>
-
-                <td class="py-6">
-
-                  <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
-                    Pending
-                  </span>
-
-                </td>
-
-                <td class="py-6">
-
-                  <button class="bg-blue-700 hover:bg-blue-800 transition text-white px-5 py-2 rounded-xl font-semibold">
-                    Review
-                  </button>
-
-                </td>
-
-              </tr>
-
-              <!-- Row -->
-              <tr>
-
-                <td class="py-6 font-semibold text-slate-900">
-                  Scholars Point
-                </td>
-
-                <td class="py-6 text-slate-600">
-                  Arman Sheikh
-                </td>
-
-                <td class="py-6">
-
-                  <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
-                    Approved
-                  </span>
-
-                </td>
-
-                <td class="py-6">
-
-                  <button class="bg-slate-900 hover:bg-slate-800 transition text-white px-5 py-2 rounded-xl font-semibold">
-                    View
-                  </button>
-
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
       </div>
 
       <!-- RIGHT -->
@@ -436,50 +337,6 @@
           <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-3">
             Recent Actions
           </h2>
-
-          <div class="mt-8 space-y-5">
-
-            <div class="flex items-start gap-4">
-
-              <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-xl">
-                🏫
-              </div>
-
-              <div>
-
-                <h3 class="font-semibold text-slate-900">
-                  New Coaching Registered
-                </h3>
-
-                <p class="text-slate-500 text-sm mt-1">
-                  Bright Minds Academy submitted verification.
-                </p>
-
-              </div>
-
-            </div>
-
-            <div class="flex items-start gap-4">
-
-              <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
-                ✅
-              </div>
-
-              <div>
-
-                <h3 class="font-semibold text-slate-900">
-                  Coaching Approved
-                </h3>
-
-                <p class="text-slate-500 text-sm mt-1">
-                  Scholars Point was approved by admin.
-                </p>
-
-              </div>
-
-            </div>
-
-          </div>
 
         </div>
 
@@ -519,6 +376,23 @@
   </main>
 
 </div>
+
+<!-- SCRIPT -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("-translate-x-full");
+    overlay.classList.toggle("hidden");
+  });
+
+  overlay.addEventListener("click", () => {
+    mobileMenu.classList.add("-translate-x-full");
+    overlay.classList.add("hidden");
+  });
+</script>
 
 </body>
 </html>

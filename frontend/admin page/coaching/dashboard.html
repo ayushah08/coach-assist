@@ -61,7 +61,8 @@
     <div class="flex min-h-screen">
       <!-- SIDEBAR -->
       <aside
-        class="w-72 bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col"
+        id="mobileMenu"
+        class="fixed lg:static top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col shadow-2xl"
       >
         <!-- Logo -->
         <div class="flex items-center gap-4 mb-10">
@@ -110,7 +111,10 @@
         <div class="flex items-center justify-between mb-6 lg:hidden">
           <h1 class="text-2xl font-bold text-slate-900">Coachly</h1>
 
-          <button class="bg-blue-700 text-white px-4 py-2 rounded-xl">
+          <button
+            id="menuBtn"
+            class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+          >
             ☰
           </button>
         </div>
@@ -399,5 +403,14 @@
         </div>
       </main>
     </div>
+
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
   </body>
 </html>
